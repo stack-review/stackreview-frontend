@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "ace-builds": "^1.4.12",
     "next": "9.5.1",
     "react": "16.13.1",
+    "react-ace": "^9.1.2",
     "react-dom": "16.13.1"
   }
 }
