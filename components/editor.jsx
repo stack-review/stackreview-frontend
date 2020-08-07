@@ -27,21 +27,23 @@ const Editor = () => {
     }
 
     return (
-        <div>
-            <select name="languageDropdown" id="languageDropdown">
-                {languageOptions.map(lang => (
-                    <option key={lang.value} onClick={() => setLanguage(lang.value)} value={lang.value}>
-                        {lang.label}
-                    </option>
-                ))}
-            </select>
+        <div style={{ width: "80%" }}>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <select name="languageDropdown" id="languageDropdown">
+                    {languageOptions.map(lang => (
+                        <option key={lang.value} onClick={() => setLanguage(lang.value)} value={lang.value}>
+                            {lang.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <AceEditor
                 onChange={handleCodeUpdate}
                 code={code}
                 showGutter={true}
                 mode={language}
                 setOptions={{ enableBasicAutocompletion: true }}
-                width={"500px"}
+                width={"100%"}
                 height={"500px"}
             />
         </div>
