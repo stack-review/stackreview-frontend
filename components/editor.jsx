@@ -23,7 +23,7 @@ const Editor = () => {
 
     const handleCodeUpdate = newCode => {
         setCode(newCode)
-        setComments(code.match(regex.javascript))
+        setComments(code.match(regex[language]))
     }
 
     return (
