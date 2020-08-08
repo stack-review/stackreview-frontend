@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.0.0",
+    "@hapi/joi": "^17.1.1",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@zeit/next-sass": "^1.0.1",
