@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   // if (isLoading) {
   //   return <div>Loading...</div>;
   // }
-   console.log(isLoading)
+
   if (error) {
     return <div>Oops... {error.message}</div>;
   }
