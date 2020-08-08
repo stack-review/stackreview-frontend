@@ -1,5 +1,8 @@
 import { sendError } from 'lib/api/error'
-import { isReqAuthenticated } from 'lib/api/auth'
+import { isReqAuthenticated } from '@/lib/api/auth'
+
+import validate from '@/lib/api/validation'
+import schema from '@/lib/api/validation/createReview/schema'
 
 export const config = {
   api: {
@@ -11,15 +14,23 @@ export const config = {
 
 export default (req, res) => {
   switch (req.method) {
-    case 'POST':
+    case 'POST': {
       if (!isReqAuthenticated(req)) {
         return sendError(res, 401)
       }
 
-      const { code, language } = req.body
+      const { ok, error } = validate(schema, req.body)
 
-      res.status(200).json(languages)
+      if (!ok) {
+        return sendError(res, 400, error)
+      }
 
+      const { code, language, anonymous } = req.body
+
+      // TODO: implement database saving
+
+      return res.status(200).json({ code, language, anonymous })
+    }
     default:
       sendError(res, 405)
   }
