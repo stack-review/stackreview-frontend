@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "ace-builds": "^1.4.12",
+    "lodash": "^4.17.19",
     "next": "9.5.1",
     "react": "16.13.1",
     "react-ace": "^9.1.2",
