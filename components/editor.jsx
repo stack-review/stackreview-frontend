@@ -38,6 +38,7 @@ const Editor = () => {
                 </select>
             </div>
             <AceEditor
+                fontSize={"16px"}
                 onChange={handleCodeUpdate}
                 code={code}
                 showGutter={true}
