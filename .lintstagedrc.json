@@ -1,0 +1,5 @@
+{
+  "**/*.js": ["yarn lint --fix", "pretty-quick --staged"],
+  "*.json": ["jsonlint", "prettier --write"],
+  "*.yaml": ["yamllint", "prettier --write"]
+}

@@ -5,7 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "standard {src,pages}/ | snazzy",
+    "format": "prettier-standard --format"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "**/node_modules/**"
+    ],
+    "global": [
+      "fetch"
+    ]
   },
   "dependencies": {
     "ace-builds": "^1.4.12",
@@ -14,5 +25,11 @@
     "react": "16.13.1",
     "react-ace": "^9.1.2",
     "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "prettier-standard": "^16.4.1",
+    "snazzy": "^8.0.0",
+    "swagger-ui-dist": "^3.31.1",
+    "yaml-lint": "^1.2.4"
   }
 }
