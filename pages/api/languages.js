@@ -1,8 +1,7 @@
 /**
  * Using hard coded language array for now
  */
-
-const languages = ['Javascript', 'HTML', 'CSS', 'Auth0', 'MongoDB']
+import languages from '@/config/languages'
 
 export default (req, res) => {
   res.status(200).json(languages)
