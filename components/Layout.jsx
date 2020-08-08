@@ -1,40 +1,32 @@
-import { AppBar, Toolbar, Typography, Button, IconButton } from "@material-ui/core"
-import MenuIcon from "@material-ui/icons/Menu"
-import { makeStyles } from "@material-ui/core/styles"
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}))
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import Header from "./Header";
 
 const Layout = ({ children }) => {
-    const classes = useStyles()
-    return (
-        <>
-            <div className={classes.root}>
-                <AppBar color="primary" position="static">
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} edge="start" color="inherit" aria-label="menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                            Stack Review
-                        </Typography>
-                        <Button color="inherit">Login</Button>
-                        <Button color="inherit">Sign Up</Button>
-                    </Toolbar>
-                </AppBar>
-            </div>
-            <main>{children}</main>
-        </>
-    )
-}
+  return (
+    <>
+      <div>
+        <AppBar
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+          color="white"
+          position="sticky"
+        >
+          <Toolbar
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography variant="h6">Stack Review</Typography>
+            <Header />
+          </Toolbar>
+        </AppBar>
+      </div>
+      <main>{children}</main>
+    </>
+  );
+};
 
-export default Layout
+export default Layout;
