@@ -365,6 +365,7 @@ components:
           type: boolean
       required:
         - code
+        - language
     CodeReview:
       type: 'object'
       additionalProperties: false
