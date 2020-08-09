@@ -11,18 +11,8 @@ function MyApp({ Component, pageProps }) {
       redirectUri={process.env.NEXT_PUBLIC_AUTH_REDIRECT_ID}
       cacheLocation="localstorage"
       useRefreshTokens="true"
-      audience={`https://${process.env.NEXT_PUBLIC_AUTH_DOMAIN}/api/v2/`}
-      scope="read:current_user update:current_user_metadata"
-      useRefreshTokens="true"
     >
-      <SWRConfig
-        value={{
-          refreshInterval: 3000,
-          fetcher: (...args) => fetch(...args).then(res => res.json()),
-        }}
-      >
-        <Component {...pageProps} />
-      </SWRConfig>
+      <Component {...pageProps} />
     </Auth0Provider>
   )
 }
