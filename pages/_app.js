@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
       clientId={process.env.NEXT_PUBLIC_AUTH_CLIENT_ID}
       redirectUri={process.env.NEXT_PUBLIC_AUTH_REDIRECT_ID}
       audience={`https://${process.env.NEXT_PUBLIC_AUTH_DOMAIN}/api/v2/`}
+      scope="read:current_user update:current_user_metadata"
       cacheLocation="localstorage"
       useRefreshTokens="true"
     >
