@@ -81,9 +81,9 @@ const NewPost = () => {
                 rows={1}
                 ref={register}
                 style={{
-                  fontSize: '16px',
+                  fontSize: '20px',
                   fontFamily: 'sans-serif',
-                  padding: '20px',
+                  padding: '15px',
                   width: '100%',
                   resize: 'none',
                   borderRadius: '10px',
