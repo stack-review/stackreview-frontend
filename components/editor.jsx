@@ -9,7 +9,7 @@ import "ace-builds/src-noconflict/mode-golang"
 const Editor = ({ language, code, handleCodeChange, languageOptions, changeLanguage }) => {
     return (
         <div style={{ width: "900px" }}>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: "10px" }}>
                 {/* TODO : Change this to material <Select> */}
                 <select name="languageDropdown" id="languageDropdown">
                     {languageOptions.map(lang => (
@@ -28,7 +28,7 @@ const Editor = ({ language, code, handleCodeChange, languageOptions, changeLangu
                 mode={language.value}
                 setOptions={{ enableBasicAutocompletion: true }}
                 width={"100%"}
-                height={"600px"}
+                height={"300px"}
             />
         </div>
     )
