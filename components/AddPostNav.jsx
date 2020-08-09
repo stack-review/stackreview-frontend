@@ -5,13 +5,18 @@ import {Add} from "@material-ui/icons";
 
 const Logout = () => {
   return (
-    <Link href="NewPost">
-    <Button style={{display: "flex", alignItems: "center", backgroundColor: "lightgrey"}}>
+    <Link replace href="/NewPost" >
+      <Button  variant="contained" color="primary" onClick={() => console.log("clicked")}>
+        {" "}
+        <Add style={{marginRight: "10px", marginLeft: "0"}}/>
+        Post Code Snippet
+      </Button>
+    {/* <Button variant="contained" color="primary" onClick={() => logout()}>
         <div style={{marginRight: "10px", marginTop: "5px"}}>
-          {"Post Code Snippet"}
+          Post Code Snippet
         </div>
       <Add />
-    </Button>
+    </Button> */}
     </Link>
   );
 };
