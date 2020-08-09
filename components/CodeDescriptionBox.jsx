@@ -1,15 +1,27 @@
-import { TextField, withStyles } from "@material-ui/core"
+const CodeDescriptionBox = ({ description, handleDescriptionChange }) => {
+    // const TextArea = withStyles({
+    //     root: {
+    //         width: "900px",
+    //         backgroundColor: "white",
+    //         borderRadius: "10px",
+    //         padding: "20px",
+    //     },
+    // })(TextField)
 
-const CodeDescriptionBox = () => {
-    const TextArea = withStyles({
-        root: {
-            width: "900px",
-            backgroundColor: "white",
-            borderRadius: "10px",
-            padding: "20px",
-        },
-    })(TextField)
-    return <TextArea multiline rows={10} InputProps={{ disableUnderline: true }} />
+    return (
+        <textarea
+            value={description}
+            onChange={handleDescriptionChange}
+            style={{
+                padding: "20px",
+                width: "900px",
+                height: "300px",
+                resize: "none",
+                borderRadius: "10px",
+                border: "none",
+            }}
+        />
+    )
 }
 
 export default CodeDescriptionBox
