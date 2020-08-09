@@ -1,6 +1,11 @@
-import Editor from "../components/editor.jsx"
-import Layout from "../components/Layout"
+import Editor from '../components/editor.jsx'
+import Layout from '../components/Layout'
+import Post from '@/components/Post.jsx'
 
 export default () => {
-    return <Layout></Layout>
+  return (
+    <Layout>
+      <Post />
+    </Layout>
+  )
 }
