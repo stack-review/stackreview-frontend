@@ -7,9 +7,11 @@ import { useState } from "react"
 import * as regex from "../utils/CommentRegex"
 
 const NewPost = () => {
-    const [codeOpen, setCodeOpen] = useState(true)
-    const [descriptionOpen, setDescriptionOpen] = useState(true)
-    const [code, setCode] = useState("")
+    // const classes = useStyles()
+
+    const [codeOpen, setCodeOpen] = useState(false)
+    const [descriptionOpen, setDescriptionOpen] = useState(false)
+    const [code, setCode] = useState("//write your code here!")
     const [comments, setComments] = useState([])
     const [description, setDescription] = useState("")
     const [language, setLanguage] = useState({ label: "C/C++", value: "c_cpp" })
@@ -23,8 +25,12 @@ const NewPost = () => {
     ]
 
     const changeLanguage = lang => {
-        console.log({ lang })
         setLanguage(lang)
+        if (lang.value === "python" && code === "//write your code here!") {
+            setCode("#write your code here!")
+        } else if (lang.value !== "python" && code === "#write your code here!") {
+            setCode("//write your code here!")
+        }
     }
 
     const handleDescriptionChange = event => {
@@ -35,9 +41,14 @@ const NewPost = () => {
         setCode(newCode)
         setComments(code.match(regex[language.value]))
     }
+
+    const handleSubmit = event => {
+        console.log({ code, description, comments })
+    }
+
     return (
         <Layout>
-            <List subheader={<ListSubheader>Create New Code Review</ListSubheader>}>
+            <List style={{ width: "700px" }} subheader={<ListSubheader>Create New Code Review</ListSubheader>}>
                 <ListItem button onClick={() => setDescriptionOpen(!descriptionOpen)}>
                     <ListItemText primary="Description" />
                     {descriptionOpen ? <ExpandLess /> : <ExpandMore />}
@@ -71,6 +82,9 @@ const NewPost = () => {
                     </List>
                 </Collapse>
             </List>
+            <Button onClick={handleSubmit} type="submit">
+                Post
+            </Button>
         </Layout>
     )
 }
