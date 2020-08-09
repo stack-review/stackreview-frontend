@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
     <Auth0Provider
     domain={process.env.NEXT_PUBLIC_AUTH_DOMAIN}
     clientId={process.env.NEXT_PUBLIC_AUTH_CLIENT_ID}
-    redirectUri='http://localhost:3000'
+    redirectUri='https://stackreview.vercel.app/'
   >
     <Component {...pageProps} /></Auth0Provider>)
 }
