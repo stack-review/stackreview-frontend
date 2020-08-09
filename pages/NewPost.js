@@ -11,6 +11,7 @@ const NewPost = () => {
     const [descriptionOpen, setDescriptionOpen] = useState(true)
     const [code, setCode] = useState("")
     const [comments, setComments] = useState([])
+    const [description, setDescription] = useState("")
     const [language, setLanguage] = useState({ label: "C/C++", value: "c_cpp" })
 
     const languageOptions = [
@@ -25,6 +26,11 @@ const NewPost = () => {
         console.log({ lang })
         setLanguage(lang)
     }
+
+    const handleDescriptionChange = event => {
+        setDescription(event.target.value)
+    }
+
     const handleCodeChange = newCode => {
         setCode(newCode)
         setComments(code.match(regex[language.value]))
@@ -39,7 +45,10 @@ const NewPost = () => {
                 <Collapse in={descriptionOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem>
-                            <CodeDescriptionBox />
+                            <CodeDescriptionBox
+                                description={description}
+                                handleDescriptionChange={handleDescriptionChange}
+                            />
                         </ListItem>
                     </List>
                 </Collapse>
