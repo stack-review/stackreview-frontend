@@ -1,4 +1,7 @@
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, IconButton } from "@material-ui/core"
+import { AccountCircle, Add} from "@material-ui/icons"
+import { makeStyles, createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
+import { grey, purple, deepPurple } from "@material-ui/core/colors/"
 import Header from "./Header";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -40,5 +43,6 @@ const Layout = ({ children }) => {
     </>
   );
 };
+
 
 export default Layout;

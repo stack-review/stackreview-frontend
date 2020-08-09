@@ -1,0 +1,163 @@
+import Editor from '../components/editor'
+import { useForm } from 'react-hook-form'
+import Layout from '../components/Layout'
+import {
+  Button,
+  Collapse,
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemText,
+  Typography,
+  TextField,
+} from '@material-ui/core'
+import { useState } from 'react'
+import * as regex from '../utils/CommentRegex'
+
+const NewPost = () => {
+  const [code, setCode] = useState('//write your code here!')
+  const [comments, setComments] = useState([])
+  const [description, setDescription] = useState('')
+  const [title, setTitle] = useState('')
+  const [language, setLanguage] = useState({
+    label: 'Javascript',
+    value: 'javascript',
+  })
+
+  const languageOptions = [
+    { label: 'C/C++', value: 'c_cpp' },
+    { label: 'Javascript', value: 'javascript' },
+    { label: 'Java', value: 'java' },
+    { label: 'Python', value: 'python' },
+    { label: 'Go', value: 'golang' },
+  ]
+
+  const changeLanguage = lang => {
+    setLanguage(lang)
+    if (lang.value === 'python' && code === '//write your code here!') {
+      setCode('#write your code here!')
+    } else if (lang.value !== 'python' && code === '#write your code here!') {
+      setCode('//write your code here!')
+    }
+  }
+
+  const handleDescriptionChange = event => {
+    setDescription(event.target.value)
+  }
+
+  const handleCodeChange = newCode => {
+    setCode(newCode)
+    setComments(code.match(regex[language.value]))
+  }
+
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = data => {
+    console.log({ data, comments, code })
+  }
+
+  return (
+    <Layout>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <List style={{ width: '700px', marginLeft: '100px' }}>
+          <ListItem>
+            <Typography variant="h4" style={{ color: 'grey' }}>
+              Create New Code Review
+            </Typography>
+          </ListItem>
+
+          <ListItem>
+            <Typography variant="h6">Title</Typography>
+          </ListItem>
+
+          <List component="div" disablePadding>
+            <ListItem>
+              <input
+                name="title"
+                type="text"
+                value={title}
+                onChange={event => setTitle(event.target.value)}
+                rows={1}
+                ref={register}
+                style={{
+                  fontSize: '16px',
+                  fontFamily: 'sans-serif',
+                  padding: '20px',
+                  width: '100%',
+                  resize: 'none',
+                  borderRadius: '10px',
+                  border: 'solid 2px grey',
+                  backgroundColor: 'whitesmoke',
+                  outline: 'none',
+                }}
+              />
+            </ListItem>
+          </List>
+
+          <ListItem>
+            <Typography variant="h6">Description</Typography>
+          </ListItem>
+
+          <List component="div" disablePadding>
+            <ListItem>
+              <textarea
+                type="text"
+                name="description"
+                ref={register}
+                value={description}
+                onChange={handleDescriptionChange}
+                style={{
+                  fontSize: '16px',
+                  fontFamily: 'sans-serif',
+                  padding: '20px',
+                  width: '100%',
+                  resize: 'none',
+                  borderRadius: '10px',
+                  border: 'solid 2px grey',
+                  backgroundColor: 'whitesmoke',
+                  outline: 'none',
+                  width: '900px',
+                  height: '150px',
+                }}
+              />
+              {/* <CodeDescriptionBox
+                ref={register}
+                description={description}
+                handleDescriptionChange={handleDescriptionChange}
+              /> */}
+            </ListItem>
+          </List>
+
+          <ListItem>
+            <Typography variant="h6">Code</Typography>
+          </ListItem>
+
+          <List component="div" disablePadding>
+            <ListItem>
+              <Editor
+                language={language}
+                changeLanguage={changeLanguage}
+                languageOptions={languageOptions}
+                code={code}
+                handleCodeChange={handleCodeChange}
+              />
+            </ListItem>
+          </List>
+          <List>
+            <ListItem style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                style={{ backgroundColor: 'lightgray' }}
+                onClick={handleSubmit}
+                type="submit"
+              >
+                Post
+              </Button>
+            </ListItem>
+          </List>
+        </List>
+      </form>
+    </Layout>
+  )
+}
+
+export default NewPost

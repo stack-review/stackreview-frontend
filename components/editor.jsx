@@ -1,50 +1,49 @@
-import { useState } from "react"
 import AceEditor from "react-ace"
-import * as regex from "../utils/CommentRegex.jsx"
 
 import "ace-builds/src-noconflict/mode-c_cpp"
 import "ace-builds/src-noconflict/mode-javascript"
 import "ace-builds/src-noconflict/mode-java"
 import "ace-builds/src-noconflict/mode-python"
 import "ace-builds/src-noconflict/mode-golang"
+import { MenuItem, Select } from "@material-ui/core"
 
-const Editor = () => {
-    const languageOptions = [
-        { label: "C/C++", value: "c_cpp" },
-        { label: "Javascript", value: "javascript" },
-        { label: "Java", value: "java" },
-        { label: "Python", value: "python" },
-        { label: "Go", value: "golang" },
-    ]
-
-    const [language, setLanguage] = useState("c_cpp")
-    const [code, setCode] = useState("")
-    const [comments, setComments] = useState([])
-
-    const handleCodeUpdate = newCode => {
-        setCode(newCode)
-        setComments(code.match(regex[language]))
-    }
-
+const Editor = ({ register, language, code, handleCodeChange, languageOptions, changeLanguage }) => {
     return (
-        <div style={{ width: "80%" }}>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <select name="languageDropdown" id="languageDropdown">
+        <div style={{ width: "900px" }}>
+            <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: "10px" }}>
+                {/* TODO : Change this to material <Select> */}
+                {/* <Select
+                  style={{width: "20px"}}
+                  value={language}
+                  onChange={event => changeLanguage(event.target.value)}
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
                     {languageOptions.map(lang => (
-                        <option key={lang.value} onClick={() => setLanguage(lang.value)} value={lang.value}>
+                        <MenuItem value={lang}>{lang.label}</MenuItem>
+                    ))}
+                </Select> */}
+                
+                {/* <select name="languageDropdown" id="languageDropdown">
+                    {languageOptions.map(lang => (
+                        <option key={lang.value} onClick={() => changeLanguage(lang)} value={lang.value}>
                             {lang.label}
                         </option>
                     ))}
-                </select>
+                </select> */}
             </div>
             <AceEditor
-                onChange={handleCodeUpdate}
+                ref={register}
+                style={{border: "solid 2px grey", borderRadius: "10px" }}
+                value={code}
+                onChange={handleCodeChange}
+                fontSize={"16px"}
                 code={code}
                 showGutter={true}
-                mode={language}
+                mode={language.value}
                 setOptions={{ enableBasicAutocompletion: true }}
                 width={"100%"}
-                height={"500px"}
+                height={"300px"}
             />
         </div>
     )
