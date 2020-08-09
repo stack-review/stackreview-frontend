@@ -1,6 +1,5 @@
-import { useFormik } from 'formik'
 import Editor from '../components/editor'
-import CodeDescriptionBox from '../components/CodeDescriptionBox'
+import { useForm } from 'react-hook-form'
 import Layout from '../components/Layout'
 import {
   Button,
@@ -48,82 +47,110 @@ const NewPost = () => {
     setComments(code.match(regex[language.value]))
   }
 
-  const handleSubmit = event => {
-    console.log({ code, title, description, comments })
-  }
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = data => console.log(data)
 
   return (
     <Layout>
-      <List style={{ width: '700px', marginLeft: '100px' }}>
-        <ListItem>
-          <Typography variant="h4" style={{ color: 'purple' }}>
-            Create New Code Review
-          </Typography>
-        </ListItem>
-
-        <ListItem>
-          <Typography variant="h6">Title</Typography>
-        </ListItem>
-
-        <List component="div" disablePadding>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <List style={{ width: '700px', marginLeft: '100px' }}>
           <ListItem>
-            <textarea
-              value={title}
-              onChange={event => setTitle(event.target.value)}
-              rows={1}
-              style={{
-                fontSize: '14px',
-                fontFamily: 'serif',
-                padding: '20px',
-                width: '100%',
-                resize: 'none',
-                borderRadius: '10px',
-                border: 'none',
-              }}
-            />
+            <Typography variant="h4" style={{ color: 'purple' }}>
+              Create New Code Review
+            </Typography>
           </ListItem>
-        </List>
 
-        <ListItem>
-          <Typography variant="h6">Description</Typography>
-        </ListItem>
-
-        <List component="div" disablePadding>
           <ListItem>
-            <CodeDescriptionBox
-              description={description}
-              handleDescriptionChange={handleDescriptionChange}
-            />
+            <Typography variant="h6">Title</Typography>
           </ListItem>
-        </List>
 
-        <ListItem>
-          <Typography variant="h6">Code</Typography>
-        </ListItem>
+          <List component="div" disablePadding>
+            <ListItem>
+              <input
+                name="title"
+                type="text"
+                value={title}
+                onChange={event => setTitle(event.target.value)}
+                rows={1}
+                ref={register}
+                style={{
+                  fontSize: '14px',
+                  fontFamily: 'sans-serif',
+                  padding: '20px',
+                  width: '100%',
+                  resize: 'none',
+                  borderRadius: '10px',
+                  border: 'solid 2px purple',
+                  backgroundColor: 'whitesmoke',
+                  outline: 'none',
+                }}
+              />
+            </ListItem>
+          </List>
 
-        <List component="div" disablePadding>
           <ListItem>
-            <Editor
-              language={language}
-              changeLanguage={changeLanguage}
-              languageOptions={languageOptions}
-              code={code}
-              handleCodeChange={handleCodeChange}
-            />
+            <Typography variant="h6">Description</Typography>
           </ListItem>
-        </List>
-        <List>
-          <ListItem style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
-              style={{ backgroundColor: 'lightBlue' }}
-              onClick={handleSubmit}
-              type="submit"
-            >
-              Post
-            </Button>
+
+          <List component="div" disablePadding>
+            <ListItem>
+              <textarea
+                type="text"
+                name="description"
+                ref={register}
+                value={description}
+                onChange={handleDescriptionChange}
+                style={{
+                  fontSize: '14px',
+                  fontFamily: 'sans-serif',
+                  padding: '20px',
+                  width: '100%',
+                  resize: 'none',
+                  borderRadius: '10px',
+                  border: 'solid 2px purple',
+                  backgroundColor: 'whitesmoke',
+                  outline: 'none',
+                  width: '900px',
+                  height: '150px',
+                }}
+              />
+              {/* <CodeDescriptionBox
+                ref={register}
+                description={description}
+                handleDescriptionChange={handleDescriptionChange}
+              /> */}
+            </ListItem>
+          </List>
+
+          <ListItem>
+            <Typography variant="h6">Code</Typography>
           </ListItem>
+
+          <List component="div" disablePadding>
+            <ListItem>
+              <Editor
+                language={language}
+                changeLanguage={changeLanguage}
+                languageOptions={languageOptions}
+                code={code}
+                handleCodeChange={handleCodeChange}
+              />
+            </ListItem>
+          </List>
+          <List>
+            <ListItem style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                style={{ backgroundColor: '#b19cd9' }}
+                onClick={handleSubmit}
+                type="submit"
+              >
+                Post
+              </Button>
+            </ListItem>
+          </List>
         </List>
-      </List>
+      </form>
     </Layout>
   )
 }
