@@ -19,8 +19,11 @@ const createCodeReview = (data, token) => fetch('/api/codereview', {
   body: JSON.stringify(data)
 })
 
+// tet code
+const random = Math.floor(100 * Math.random())
 const initialState = {
-  code: 'const foo = 42',
+  title: `Code review #${random}`,
+  code: `const foo = ${random}`,
   language: 'javascript',
   anonymous: false 
 }
@@ -33,8 +36,6 @@ export const CodeReviewCreationPage = () => {
 
   const [codeReview, setCodeReview] = useState(initialState)
 
-  console.log('user', user)
-  console.log('accessToken', accessToken)
   const {
     name, 
     picture,
