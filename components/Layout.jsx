@@ -1,18 +1,13 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Header from "./Header";
+import Post from './Post'
+
 
 const Layout = ({ children }) => {
   return (
     <>
       <div>
-        <AppBar
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-          color="white"
-          position="sticky"
-        >
+        <AppBar  color="default" position="sticky" >
           <Toolbar
             style={{
               display: "flex",
@@ -24,7 +19,10 @@ const Layout = ({ children }) => {
           </Toolbar>
         </AppBar>
       </div>
-      <main>{children}</main>
+
+      <Post />
+
+      {/* <main>{children}</main> */}
     </>
   );
 };

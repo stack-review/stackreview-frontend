@@ -1,16 +1,52 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: #fbfbfb;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 30px;
+    margin-top: 3px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.description {
+    color: grey;
+    font-size: 20px;
+    margin-top: 3px;
+    font-family: serif;
+}
+
+.by {
+    color: grey;
+    font-size: small;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.code {
+    margin: 0 auto;
+}
+
+.container {
+    background-color: #FFFFFF;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: max-content;
+}
+
+.textarea {
+    width: 100%;
+    margin-bottom: 5px;
 }
