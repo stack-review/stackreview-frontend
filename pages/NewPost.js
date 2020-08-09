@@ -92,7 +92,7 @@ const NewPost = () => {
           </List>
         </Collapse>
       </List>
-      <Button onClick={handleSubmit} type="submit">
+      <Button style={{ margin: '10px' }} onClick={handleSubmit} type="submit">
         Post
       </Button>
     </Layout>
