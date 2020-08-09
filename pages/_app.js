@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }) {
       clientId={process.env.NEXT_PUBLIC_AUTH_CLIENT_ID}
       redirectUri={process.env.NEXT_PUBLIC_AUTH_REDIRECT_ID}
        cacheLocation= 'localstorage'
+       useRefreshTokens = 'true'
     >
       <Component {...pageProps} />
     </Auth0Provider>
