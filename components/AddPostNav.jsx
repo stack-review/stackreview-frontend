@@ -5,7 +5,7 @@ import {Add} from "@material-ui/icons";
 
 const Logout = () => {
   return (
-    <Link href="/NewPost">
+    <Link href="/NewPost" replace>
       <Button  variant="contained" color="primary" onClick={() => console.log("clicked")}>
         {" "}
         <Add style={{marginRight: "10px", marginLeft: "0"}}/>
