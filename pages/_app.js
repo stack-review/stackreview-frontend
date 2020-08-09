@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '.././node_modules/highlight.js/styles/vs2015.css'
 import { Auth0Provider } from "@auth0/auth0-react";
 
 function MyApp({ Component, pageProps }) {
