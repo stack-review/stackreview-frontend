@@ -1,0 +1,456 @@
+openapi: '3.0.0'
+info:
+  description: ''
+  version: '1.0.0'
+  title: 'Stackreview'
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: 'foo@bar.tld'
+  license:
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers: 
+  - url: https://stackreview.vercel.app/api
+security: 
+  - bearerAuth: [] 
+paths:
+  /codereview:
+    post:
+      operationId: 'createCodeReview'
+      description: 'Create a code review'
+      requestBody:
+        description: 'Code review payload'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CodeReviewPayload'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeReview'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+  /codereview/{rid}:
+    get: 
+      operationId: 'getCodeReview'
+      description: 'Retrieve a code review'
+      parameters: 
+        - $ref: '#/components/parameters/rid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeReview'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated' 
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+    patch:
+      operationId: 'patchCodeReview'
+      description: 'Patch a code review'
+      parameters: 
+        - $ref: '#/components/parameters/rid'
+      requestBody:
+        description: 'Code review patch'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CodeReviewPatch'
+      responses:
+        '204':
+          description: Patched
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated' 
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden' 
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+  /codereview/{rid}/comment:
+    get: 
+      operationId: 'getCodeReviewComments'
+      description: 'Retrieve a code review comments'
+      parameters: 
+        - $ref: '#/components/parameters/rid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeReviewWithComments'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated' 
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+    post:
+      operationId: 'addCodeReviewComments'
+      description: 'Add a new code review comment'
+      parameters: 
+        - $ref: '#/components/parameters/rid'
+      requestBody:
+        description: 'Add code review patch'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CodeReviewPatch'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeReviewCommentPayload'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated' 
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+  /codereview/{rid}/comment/{cid}:
+    get: 
+      operationId: 'getCodeReviewComment'
+      description: 'Retrieve a code review comment'
+      parameters: 
+        - $ref: '#/components/parameters/rid'
+        - $ref: '#/components/parameters/cid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated' 
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+    patch:
+      operationId: 'patchCodeReviewComment'
+      description: 'Patch a code review comment'
+      parameters: 
+        - $ref: '#/components/parameters/rid'
+        - $ref: '#/components/parameters/cid'
+      responses:
+        '204':
+          description: Patched
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated' 
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden' 
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+    delete:
+      operationId: 'deleteCodeReviewComment'
+      description: 'Delete a code review comment'
+      parameters: 
+        - $ref: '#/components/parameters/rid'
+        - $ref: '#/components/parameters/cid'
+      responses:
+        '204':
+          description: Deleted
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated' 
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden' 
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+components:
+  parameters:
+    rid: 
+      in: path
+      name: rid
+      schema:
+        $ref: '#/components/schemas/uuid'
+      required: true
+      description: 'Code review id'
+    cid:
+      in: path
+      name: cid
+      schema:
+        $ref: '#/components/schemas/uuid'
+      required: true
+      description: 'Code review comment id'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    uuid:   
+      type: string
+      pattern: /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/
+      maxLength: 32
+    language:
+      type: string
+      enum: 
+        - Javascript
+        - HTML
+        - CSS
+        - Auth0
+        - MongoDB
+    code: 
+      type: string
+      maxLength: 10000
+    BadRequest:
+      $ref: '#/components/schemas/ApiError'
+    Unauthenticated:
+      $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      $ref: '#/components/schemas/ApiError'
+    NotFound:
+      $ref: '#/components/schemas/ApiError'
+    CodeReviewPatch:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        code: 
+          $ref: '#/components/schemas/code'
+        language:
+          $ref: '#/components/schemas/language'
+        anonymous: 
+          type: boolean
+    CodeReviewPayload:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        code: 
+          $ref: '#/components/schemas/code'
+        language:
+          $ref: '#/components/schemas/language'
+        anonymous: 
+          type: boolean
+      required:
+        - code
+        - language
+    CodeReview:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        rid: 
+          $ref: '#/components/schemas/uuid'
+        code: 
+          $ref: '#/components/schemas/code'
+        language:
+          $ref: '#/components/schemas/language'
+        modified:
+          type: string
+          format: timestamp
+          pattern: /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+|-)\d{2}:\d{2}$/
+        author:
+          oneOf:
+            - $ref: '#/components/schemas/Contributor'
+            - $ref: '#/components/schemas/AnonymousContributor'
+
+    CodeReviewCommentPayload:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        cid: 
+          $ref: '#/components/schemas/uuid'
+    CodeReviewWithComments:
+      allOf: 
+        - $ref: '#/components/schemas/CodeReview'
+        - type: object
+          additionalProperties: false
+          properties: 
+            comments: 
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'
+    Comment:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        cid: 
+          $ref: '#/components/schemas/uuid'
+        comment: 
+          type: string
+        lineNumber: 
+          type: integer
+        contributor:
+          $ref: '#/components/schemas/Contributor'
+    
+    AnonymousContributor:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        uid: 
+          $ref: '#/components/schemas/uuid'
+        username:
+          type: string
+          readOnly: true
+          default: 'anonymous'
+          minLength: 3
+          maxLength: 100
+          pattern: /^[a-z\-\_0-9]*$/
+        avatar:
+          type: string
+          readOnly: true
+          pattern: /[a-z\-\_0-9\.\/]*/
+          default: 'path/to/default/avatar.png'
+          maxLength: 150
+    Contributor:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        uid: 
+          $ref: '#/components/schemas/uuid'
+        username:
+          type: string
+          minLength: 3
+          maxLength: 100
+          pattern: /^[a-z\-\_0-9]*$/
+        avatar:
+          type: string
+          pattern: /[a-z\-\_0-9\.\/]*/
+          maxLength: 150
+    ApiError:
+      type: 'object'
+      additionalProperties: false
+      properties:
+        message:
+          type: 'string'
