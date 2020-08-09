@@ -19,7 +19,10 @@ const NewPost = () => {
   const [comments, setComments] = useState([])
   const [description, setDescription] = useState('')
   const [title, setTitle] = useState('')
-  const [language, setLanguage] = useState({ label: 'C/C++', value: 'c_cpp' })
+  const [language, setLanguage] = useState({
+    label: 'Javascript',
+    value: 'javascript',
+  })
 
   const languageOptions = [
     { label: 'C/C++', value: 'c_cpp' },
@@ -49,14 +52,16 @@ const NewPost = () => {
 
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = data => console.log(data)
+  const onSubmit = data => {
+    console.log({ data, comments, code })
+  }
 
   return (
     <Layout>
       <form onSubmit={handleSubmit(onSubmit)}>
         <List style={{ width: '700px', marginLeft: '100px' }}>
           <ListItem>
-            <Typography variant="h4" style={{ color: 'purple' }}>
+            <Typography variant="h4" style={{ color: 'grey' }}>
               Create New Code Review
             </Typography>
           </ListItem>
@@ -75,13 +80,13 @@ const NewPost = () => {
                 rows={1}
                 ref={register}
                 style={{
-                  fontSize: '14px',
+                  fontSize: '16px',
                   fontFamily: 'sans-serif',
                   padding: '20px',
                   width: '100%',
                   resize: 'none',
                   borderRadius: '10px',
-                  border: 'solid 2px purple',
+                  border: 'solid 2px grey',
                   backgroundColor: 'whitesmoke',
                   outline: 'none',
                 }}
@@ -102,13 +107,13 @@ const NewPost = () => {
                 value={description}
                 onChange={handleDescriptionChange}
                 style={{
-                  fontSize: '14px',
+                  fontSize: '16px',
                   fontFamily: 'sans-serif',
                   padding: '20px',
                   width: '100%',
                   resize: 'none',
                   borderRadius: '10px',
-                  border: 'solid 2px purple',
+                  border: 'solid 2px grey',
                   backgroundColor: 'whitesmoke',
                   outline: 'none',
                   width: '900px',
@@ -141,7 +146,7 @@ const NewPost = () => {
           <List>
             <ListItem style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
-                style={{ backgroundColor: '#b19cd9' }}
+                style={{ backgroundColor: 'lightgray' }}
                 onClick={handleSubmit}
                 type="submit"
               >

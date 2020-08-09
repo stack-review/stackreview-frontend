@@ -24,17 +24,17 @@ const Editor = ({ register, language, code, handleCodeChange, languageOptions, c
                     ))}
                 </Select> */}
                 
-                <select name="languageDropdown" id="languageDropdown">
+                {/* <select name="languageDropdown" id="languageDropdown">
                     {languageOptions.map(lang => (
                         <option key={lang.value} onClick={() => changeLanguage(lang)} value={lang.value}>
                             {lang.label}
                         </option>
                     ))}
-                </select>
+                </select> */}
             </div>
             <AceEditor
                 ref={register}
-                style={{border: "solid 2px purple", borderRadius: "10px" }}
+                style={{border: "solid 2px grey", borderRadius: "10px" }}
                 value={code}
                 onChange={handleCodeChange}
                 fontSize={"16px"}
