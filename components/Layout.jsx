@@ -1,6 +1,8 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core"
 import Header from "./Header";
-import Post from "./Post"
+import Post from "./Post";
+import Footer from "./Footer";
+
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Layout = ({ children }) => {
@@ -28,9 +30,10 @@ const Layout = ({ children }) => {
             <Header />
           </Toolbar>
         </AppBar>
-      <Post />
-</div>
+        <Post />
+      </div>
       <main>{children}</main>
+      <Footer />
     </>
   );
 };

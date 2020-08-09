@@ -28,3 +28,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## API
+
+API is provided using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction).
+
+API documentation is provided using OpenAPI specification (OAS) 3.0. Definition has been validated through [API Security Tools
+API Contract Security Audit](https://apisecurity.io/tools/audit/). Current version raised 76/100. Mainly minor issues. Only point is about documenting how to retrieve Auth0 token and use it as a authorization bearer.
+
+
