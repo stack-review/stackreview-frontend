@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 import { SWRConfig } from 'swr'
 import '../styles/globals.css'
 import '.././node_modules/highlight.js/styles/vs2015.css'
-import { Auth0Provider } from '@auth0/auth0-react'
-
+import { Auth0Provider } from "@auth0/auth0-react";
 import Router from 'next/router'
 
 // https://github.com/zeit/next-plugins/issues/282#issuecomment-432127816
@@ -36,8 +35,8 @@ function MyApp({ Component, pageProps }) {
       redirectUri={process.env.NEXT_PUBLIC_AUTH_REDIRECT_ID}
       audience={`https://${process.env.NEXT_PUBLIC_AUTH_DOMAIN}/api/v2/`}
       scope="read:current_user update:current_user_metadata"
-      cacheLocation="localstorage"
-      useRefreshTokens="true"
+       useRefreshTokens = 'true'
+
     >
       <SWRConfig 
         value={{
