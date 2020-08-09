@@ -19,6 +19,6 @@ function MyApp({ Component, pageProps }) {
     redirectUri='https://stackreview.vercel.app/'
   >
     <Component {...pageProps} /></Auth0Provider>)
-}https://stackreview.vercel.app/
+}
 
 export default MyApp
