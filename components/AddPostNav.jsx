@@ -5,8 +5,8 @@ import {Add} from "@material-ui/icons";
 
 const Logout = () => {
   return (
-    <Link href="NewPost">
-    <Button style={{display: "flex", alignItems: "center", backgroundColor: "lightgrey"}}>
+    <Link href="/NewPost">
+    <Button variant="contained" color="primary" onClick={() => logout()}>
         <div style={{marginRight: "10px", marginTop: "5px"}}>
           {"Post Code Snippet"}
         </div>
