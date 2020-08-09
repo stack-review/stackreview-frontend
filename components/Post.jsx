@@ -1,6 +1,5 @@
 import PostContainer from './PostContainer'
 
-
 export default function Post() {
   return (
     <div >
