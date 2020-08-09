@@ -1,3 +1,4 @@
+import * as yup from 'yup'
 import Editor from '../components/editor'
 import { useForm } from 'react-hook-form'
 import Layout from '../components/Layout'
@@ -15,6 +16,7 @@ import { useState } from 'react'
 import * as regex from '../utils/CommentRegex'
 
 const NewPost = () => {
+  const [errors, setErrors] = useState([])
   const [code, setCode] = useState('//write your code here!')
   const [comments, setComments] = useState([])
   const [description, setDescription] = useState('')
@@ -52,8 +54,27 @@ const NewPost = () => {
 
   const { register, handleSubmit } = useForm()
 
+  let schema = yup.object().shape({
+    code: yup.string().required().max(300, 'max length of code can be 300!'),
+    description: yup
+      .string()
+      .required()
+      .max(200, 'max length of description can be 200!'),
+    title: yup
+      .string()
+      .required("Can't be blank!")
+      .max(50, 'Max length of title can be 50'),
+  })
+
+  const checkSchema = () => {
+    schema
+      .validate({ title, code, description })
+      .catch(obj => setErrors(() => obj.errors))
+  }
+
   const onSubmit = data => {
-    console.log({ data, comments, code })
+    checkSchema()
+    console.log(errors)
   }
 
   return (
@@ -143,6 +164,24 @@ const NewPost = () => {
               />
             </ListItem>
           </List>
+
+          <List>
+            <ListItem>
+              {errors.map(er => (
+                <ListItem
+                  style={{
+                    color: 'red',
+                    border: 'solid 1px red',
+                    margin: '5px',
+                    borderRadius: '5px',
+                  }}
+                >
+                  {er}
+                </ListItem>
+              ))}
+            </ListItem>
+          </List>
+
           <List>
             <ListItem style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
