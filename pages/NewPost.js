@@ -1,4 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react'
 import Editor from '../components/editor'
 import { useForm } from 'react-hook-form'
 import Layout from '../components/Layout'

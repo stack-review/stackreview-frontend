@@ -7,16 +7,14 @@ import AddPost from "./AddPostNav"
 const Header = () => {
   const { isAuthenticated } = useAuth0();
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end",  }}>
-      {!isAuthenticated ? (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      {isAuthenticated ? (
         <>
           {" "}
-          <AddPost/> <Logout /> <AvatarIcon />
+          <AddPost /> <Logout /> <AvatarIcon />
         </>
       ) : (
-          <>
-            <Login />
-          </>
+        <Login />
       )}
     </div>
   );
