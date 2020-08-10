@@ -1,13 +1,7 @@
 # Stack Review
 ![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/178/273/datas/original.png)
-## Inspiration
-Ever since I started coding, being judged based on my code was my biggest fear, becoming an expert is not an overnight process. My first criticism came with my first article, which was a tutorial on creating a **Twitter Bot**, being the first article I was so happy and proud to share with the world. It was then I was criticized for the way it was coded, for example, instead of splitting code into different functions, I only had one big function that took care of everything. 
 
-Making sure the code works is the priority for someone who has just started coding, as it was for me. Criticism is essential for growth, but only constructive criticism and sometimes negative criticism can affect someone's confidence, negative criticism is a real problem that exists and affects programmers. 
-
-So, I thought, is there any way someone can review my code without me being judged by others. This problem inspired us to create **Stack Review**, a peer code review portal where you can share your code snippets and get it reviewed by experts and the community without disclosing your information. To scare off potential scammers, to review code, one must register on the portal. Isn't it Awesome? 
-
-## What it does?
+## About
 Stack Review helps you to get your code reviewed by your peers and community members anonymously. To get started, you simply need to register on the portal. After that, you can share posts or code snippets and get it reviewed by other community members. You can also evaluate other people's code and let them know how they can improve it. In a nutshell, **Stack Review** is where you can improve your coding skills and help others do the same.
 
 ## How we built it
@@ -45,12 +39,9 @@ The next step was to create a form where the user can create new Posts. We used 
  
  
  Testing - 
- 
  It's plan to add API integration testing using Jest & AVA. This tests will verify all API routes error codes and will be run on each pull request using Azure Pipelines Github integration. 
  It will help us to not relying on manual testing or curl testing. It was not possible to setup Azure Pipelines in a so short amount of times even using Github Actions.
    
-
-
 
 ## Challenges we ran into
 We ran into quite a few challenges along the way; one of our teammates had to leave the hackathon due to some personal reasons that significantly affected the work distribution among us. Still, we tackled this issue and redistributed the tasks among ourselves and completed this project. 
@@ -82,12 +73,11 @@ Here are some ideas :
 
 ## Getting Started
 
-First, run the development server:
+First, install the packages and then run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
