@@ -26,7 +26,8 @@ const createCodeReview = (data, token) => fetch('/api/codereview', {
     authorization: `bearer ${token}`
   },
   body: JSON.stringify(data)
-}).catch(err => console.error(err))
+}).then((res)=>{})
+.catch((err) => {console.log(err)})
 
 
 const NewPostPage = async () => {
