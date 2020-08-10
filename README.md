@@ -1,6 +1,5 @@
 # Stack Review
-
-
+![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/178/273/datas/original.png)
 ## Inspiration
 Ever since I started coding, being judged based on my code was my biggest fear, becoming an expert is not an overnight process. My first criticism came with my first article, which was a tutorial on creating a **Twitter Bot**, being the first article I was so happy and proud to share with the world. It was then I was criticized for the way it was coded, for example, instead of splitting code into different functions, I only had one big function that took care of everything. 
 
