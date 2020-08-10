@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
       audience={`https://${process.env.NEXT_PUBLIC_AUTH_DOMAIN}/api/v2/`}
       scope="read:current_user update:current_user_metadata"
        useRefreshTokens = 'true'
-
+      cacheLocation= 'localstorage'
     >
       <SWRConfig 
         value={{
