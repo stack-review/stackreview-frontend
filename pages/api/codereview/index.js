@@ -25,7 +25,7 @@ const getAuthor = (author, anonymous) =>
 export default async (req, res) => {
   switch (req.method) {
     case 'POST': {
-       if (!isReqAuthenticated(req)) {
+      if (!isReqAuthenticated(req)) {
         return sendError(res, 401)
       }
 
@@ -55,8 +55,6 @@ export default async (req, res) => {
       } catch(err) {
         console.error("Failed to save in db", err);
       }
-
-      return res.status(200).json({ code, language, anonymous })
     }
 
     case 'GET': {

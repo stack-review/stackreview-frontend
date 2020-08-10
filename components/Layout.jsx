@@ -1,6 +1,5 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core"
 import Header from "./Header";
-import Footer from "./Footer";
 
 import Link from "next/link"
 
@@ -27,8 +26,7 @@ const Layout = ({ children }) => {
         </AppBar>
       </div>
       <main>{children}</main>
-      <Footer />
-    </>
+     </>
   );
 };
 
