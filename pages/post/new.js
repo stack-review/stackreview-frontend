@@ -1,9 +1,4 @@
-<<<<<<< HEAD:pages/NewPost.js
-import * as yup from 'yup'
-import Editor from '../components/editor'
-=======
 import Editor from '../../components/editor'
->>>>>>> b3292b6... feat(post): add creation page:pages/post/new.js
 import { useForm } from 'react-hook-form'
 import Layout from '../../components/Layout'
 import {
