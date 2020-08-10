@@ -7,11 +7,13 @@ import PostContainer from '@/components/PostContainer'
 import { Button, List, ListItem } from "@material-ui/core";
 import Link from 'next/link'
 
+import Loader from '@/components/Loader'
+
 const Content = () => {
   const { data, error } = useSWR('/api/codereview')
 
   if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  if (!data) return <Loader />
 
   return (
     <List>
@@ -21,18 +23,11 @@ const Content = () => {
             review={codereview} 
             editable={false} 
             toolbar={
-              <>
-                <Button>
-                  <Link href='/post/[id]' as={`/post/${codereview.rid}`} passHref>
-                    <a>See code snippet</a>
-                  </Link>
-                </Button>
-                <Button>
-                  <Link href='/post/[id]/comment' as={`/post/${codereview.rid}/comment`} passHref>
-                    <a>Review code snippet</a>
-                  </Link>
-                </Button>
-              </>
+              <Button>
+                <Link href={`/post/${codereview.rid}`} passHref>
+                  <a>See code snippet</a>
+                </Link>
+              </Button>
             }
           />
  
