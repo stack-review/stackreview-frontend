@@ -35,12 +35,17 @@ const createCodeReview = (data, token) => {
 }
 
 const NewPostPage = async () => {
-    try {
         const { user, isAuthenticated, loginWithPopup } = useAuth0()
 
-        if (!isAuthenticated) {
-            await loginWithPopup()
-        }
+    
+try{    
+    if (!isAuthenticated) {
+    await loginWithPopup()
+}
+}catch(err){
+    console.log(err)
+}
+        
         const { accessToken } = useAccessToken()
         const router = useRouter()
 
@@ -231,10 +236,7 @@ const NewPostPage = async () => {
                 </form>
             </Layout>
         )
-    }
-    catch (err) {
-        console.log(err)
-    }
+  
 }
 
 // export default withAuthenticationRequired(NewPostPage)
