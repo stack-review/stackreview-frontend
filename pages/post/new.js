@@ -1,36 +1,51 @@
-import Editor from '../components/editor'
+import Editor from '../../components/editor'
 import { useForm } from 'react-hook-form'
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import {
   Button,
-  Collapse,
   List,
-  ListSubheader,
   ListItem,
-  ListItemText,
   Typography,
   TextField,
+  Checkbox
 } from '@material-ui/core'
 import { useState } from 'react'
-import * as regex from '../utils/CommentRegex'
+import * as regex from '../../utils/CommentRegex'
 
-const NewPost = () => {
+import languages from '@/config/languages'
+
+import { mutate } from 'swr'
+import { useAuth0 } from "@auth0/auth0-react";
+import { useAccessToken } from 'lib/useAccessToken'
+import { useRouter } from 'next/router'
+
+const createCodeReview = (data, token) => fetch('/api/codereview', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `bearer ${token}`
+  },
+  body: JSON.stringify(data)
+})
+
+
+const NewPostPage = () => {
+  const { user, isAuthenticated, loginWithPopup } = useAuth0()
+
+  if (!isAuthenticated) {
+    return loginWithPopup()
+  }
+  const { accessToken } = useAccessToken()
+  const router = useRouter()
+
   const [code, setCode] = useState('//write your code here!')
-  const [comments, setComments] = useState([])
   const [description, setDescription] = useState('')
   const [title, setTitle] = useState('')
+  const [anonymous, setAnonymous] = useState(false)
   const [language, setLanguage] = useState({
     label: 'Javascript',
     value: 'javascript',
   })
-
-  const languageOptions = [
-    { label: 'C/C++', value: 'c_cpp' },
-    { label: 'Javascript', value: 'javascript' },
-    { label: 'Java', value: 'java' },
-    { label: 'Python', value: 'python' },
-    { label: 'Go', value: 'golang' },
-  ]
 
   const changeLanguage = lang => {
     setLanguage(lang)
@@ -39,6 +54,10 @@ const NewPost = () => {
     } else if (lang.value !== 'python' && code === '#write your code here!') {
       setCode('//write your code here!')
     }
+  }
+
+  const handleAnonymousChange = event => {
+    setAnonymous(!!anonymous)
   }
 
   const handleDescriptionChange = event => {
@@ -52,8 +71,36 @@ const NewPost = () => {
 
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = data => {
-    console.log({ data, comments, code })
+  const onSubmit = async () => {
+    const {
+      name, 
+      picture,
+      sub
+    } = user
+
+    const data = {
+      title,
+      language: language.value,
+      description,
+      code,
+      anonymous,
+      author: {
+        uid: sub,
+        name,
+        picture
+      }
+    }
+
+    try {
+      await createCodeReview(data, accessToken)
+  
+      mutate('/api/codereview')
+  
+      router.push('/')
+
+    } catch (e) {
+      // TODO handle error case
+    }
   }
 
   return (
@@ -137,12 +184,29 @@ const NewPost = () => {
               <Editor
                 language={language}
                 changeLanguage={changeLanguage}
-                languageOptions={languageOptions}
+                languageOptions={languages}
                 code={code}
                 handleCodeChange={handleCodeChange}
               />
             </ListItem>
           </List>
+
+          <ListItem>
+            <Typography variant="h6">Do you want to share it anonymously ?</Typography>
+          </ListItem>
+
+          <List component="div" disablePadding>
+            <ListItem>
+              <Checkbox
+                name='anonymous'
+                ref={register}
+                checked={anonymous}
+                onChange={handleAnonymousChange}
+                inputProps={{ 'aria-label': 'anonymous-snippet' }}
+              />
+            </ListItem>
+          </List>
+
           <List>
             <ListItem style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
@@ -160,4 +224,5 @@ const NewPost = () => {
   )
 }
 
-export default NewPost
+// export default withAuthenticationRequired(NewPostPage)
+export default NewPostPage
