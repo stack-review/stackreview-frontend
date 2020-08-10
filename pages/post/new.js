@@ -34,11 +34,11 @@ const createCodeReview = (data, token) => fetch('/api/codereview', {
 })
 
 
-const NewPostPage = () => {
+const NewPostPage = async () => {
   const { user, isAuthenticated, loginWithPopup } = useAuth0()
 
   if (!isAuthenticated) {
-    return loginWithPopup()
+    await loginWithPopup()
   }
   const { accessToken } = useAccessToken()
   const router = useRouter()
