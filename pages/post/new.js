@@ -19,16 +19,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useAccessToken } from 'lib/useAccessToken'
 import { useRouter } from 'next/router'
 
-const createCodeReview = (data, token) => fetch('/api/codereview', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    authorization: `bearer ${token}`
-  },
-  body: JSON.stringify(data)
-}).then((res)=>{})
-.catch((err) => {console.log(err)})
-
+const createCodeReview = (data, token) => {
+  fetch('/api/codereview', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then(res => {})
+    .catch(err => {
+      console.log(err)
+    })
+}
 
 const NewPostPage = async () => {
   const { user, isAuthenticated, loginWithPopup } = useAuth0()
