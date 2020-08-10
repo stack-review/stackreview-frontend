@@ -23,8 +23,8 @@ const PostContainer = ({ review, toolbar = null }) => {
         <Card className={classes.root}>
             <CardContent>
                 <div className="title">{review.title}</div>
-<!--                 <AuthorAvatar {...review.author} />
- -->
+              {/* <AuthorAvatar {...review.author} /> */}
+ 
                 {review.description && (<div className="description">{review.description}</div>)}
                 <div className="code" >
                     <Highlight className={review.language}>
