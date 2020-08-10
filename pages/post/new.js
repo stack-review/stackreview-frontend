@@ -9,7 +9,7 @@ import {
   TextField,
   Checkbox
 } from '@material-ui/core'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import * as regex from '../../utils/CommentRegex'
 
 import languages from '@/config/languages'
@@ -66,12 +66,13 @@ const NewPostPage = () => {
 
   const handleCodeChange = newCode => {
     setCode(newCode)
-    setComments(code.match(regex[language.value]))
+    // setComments(code.match(regex[language.value]))
   }
 
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = async () => {
+  const onSubmit = useCallback(async submission => {
+    const { title, description } = submission
     const {
       name, 
       picture,
@@ -101,7 +102,7 @@ const NewPostPage = () => {
     } catch (e) {
       // TODO handle error case
     }
-  }
+  }, [accessToken, code, anonymous])
 
   return (
     <Layout>
@@ -200,7 +201,8 @@ const NewPostPage = () => {
               <Checkbox
                 name='anonymous'
                 ref={register}
-                checked={anonymous}
+                // checked={anonymous}
+                value={anonymous}
                 onChange={handleAnonymousChange}
                 inputProps={{ 'aria-label': 'anonymous-snippet' }}
               />
@@ -225,4 +227,4 @@ const NewPostPage = () => {
 }
 
 // export default withAuthenticationRequired(NewPostPage)
-export default NewPostPage
+export default (NewPostPage)
