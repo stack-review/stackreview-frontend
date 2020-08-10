@@ -1,5 +1,5 @@
 # Stack Review
-![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/178/273/datas/original.png)
+![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/178/533/datas/original.png)
 
 ## About
 Stack Review helps you to get your code reviewed by your peers and community members anonymously. To get started, you simply need to register on the portal. After that, you can share posts or code snippets and get it reviewed by other community members. You can also evaluate other people's code and let them know how they can improve it. In a nutshell, **Stack Review** is where you can improve your coding skills and help others do the same.
