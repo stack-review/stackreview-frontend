@@ -7,7 +7,7 @@ const Logout = () => {
     <Link href="/post/new">
       <Button variant="outlined" color="primary" style={{display: "flex", alignItems: "center"}}>
         <div style={{marginRight: "10px", marginTop: "5px"}}>
-          {"Post Code Snippet"}
+          {"Post"}
         </div>
         <Add />
       </Button>
