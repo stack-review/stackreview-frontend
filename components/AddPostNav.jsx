@@ -6,7 +6,7 @@ const Logout = () => {
   return (
     <Link href="/post/new">
       <Button variant="outlined" color="primary" style={{display: "flex", alignItems: "center"}}>
-        <div style={{marginRight: "10px", marginTop: "5px"}}>
+        <div style={{marginRight: "10px"}}>
           {"Post"}
         </div>
         <Add />
