@@ -34,17 +34,13 @@ const createCodeReview = (data, token) => {
         })
 }
 
-const NewPostPage = async () => {
+const NewPostPage =  () => {
         const { user, isAuthenticated, loginWithPopup } = useAuth0()
 
-    
-try{    
-    if (!isAuthenticated) {
-    await loginWithPopup()
-}
-}catch(err){
-    console.log(err)
-}
+
+        if (!isAuthenticated) {
+             loginWithPopup()
+        }
         
         const { accessToken } = useAccessToken()
         const router = useRouter()
